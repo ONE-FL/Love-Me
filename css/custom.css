@@ -1,0 +1,401 @@
+/* 网站信息卡片 - 左对齐布局 */
+.card-webinfo .webinfo-item {
+  display: flex;          
+  align-items: center;    
+  margin-bottom: 8px;     
+}
+
+.card-webinfo .item-name {
+  flex: 0 0 8em;          
+  text-align: left;       
+  margin-right: 10px;     
+  white-space: nowrap;    
+}
+
+.card-webinfo .item-count {
+  flex: 1;                
+  text-align: left;       
+  color: #49b1f5;         
+}
+
+.card-webinfo {
+  font-size: 16px;        
+}
+
+/* 正文内容背景图片 */
+.content {
+  background: url('/images/樱花.jpg') no-repeat center center fixed !important;
+  background-size: cover;
+  color: #ffffff;
+  padding: 20px;
+  border-radius: 8px;
+}
+
+/* 文章卡片样式 */
+.recent-post-item {
+  background: rgba(4, 246, 89, 0.9); 
+  color: #f5390a;
+  border-radius: 8px;
+  margin-bottom: 20px;
+  box-shadow: 0 4px 12px rgb(31, 7, 244); 
+  transition: transform 0.3s ease; 
+}
+
+.recent-post-item:hover {
+  transform: translateY(-5px); 
+}
+
+.recent-post-item .article-title {
+  color: #222;
+  font-size: 1.5rem;
+  margin-bottom: 10px;
+}
+
+.recent-post-item .article-meta {
+  color: #666;
+  font-size: 0.9rem;
+  margin-bottom: 15px;
+}
+
+
+/*---------------- 页面样式调节---------------------- */
+:root {
+  --trans-light: rgba(255, 255, 255, 0.88);
+  --trans-dark: rgba(25, 25, 25, 0.88);
+  --border-style: 1px solid rgb(169, 169, 169);
+  --backdrop-filter: blur(5px) saturate(150%);
+}
+
+/* 首页文章卡片 */
+#recent-posts > .recent-post-item {
+  background: var(--trans-light);
+  backdrop-filter: var(--backdrop-filter);
+  border-radius: 25px;
+  border: var(--border-style);
+}
+
+/* 首页侧栏卡片 */
+#aside-content .card-widget {
+  background: var(--trans-light);
+  backdrop-filter: var(--backdrop-filter);
+  border-radius: 18px;
+  border: var(--border-style);
+}
+
+/* 文章页、归档页、普通页面 */
+div#post,
+div#page,
+div#archive {
+  background: var(--trans-light);
+  backdrop-filter: var(--backdrop-filter);
+  border: var(--border-style);
+  border-radius: 20px;
+}
+
+/* 导航栏 */
+#page-header.nav-fixed #nav {
+  background: rgba(255, 255, 255, 0.75);
+  backdrop-filter: var(--backdrop-filter);
+}
+
+[data-theme="dark"] #page-header.nav-fixed #nav {
+  background: rgba(0, 0, 0, 0.7) !important;
+}
+
+/* 夜间模式遮罩 */
+[data-theme="dark"] #recent-posts > .recent-post-item,
+[data-theme="dark"] #aside-content .card-widget,
+[data-theme="dark"] div#post,
+[data-theme="dark"] div#archive,
+[data-theme="dark"] div#page {
+  background: var(--trans-dark);
+}
+/*---------------- 页面样式调节---------------------- */
+
+
+/*-------------------------------- 文章页面波浪线（修复版） -------------------------*/
+
+.main-hero-waves-area {
+  z-index: 9999 !important;  /* 提升层级，避免被导航栏遮挡 */
+}
+/* 强制确保父容器定位正确 */
+#page-header {
+  position: relative !important; /* 覆盖主题样式，作为波浪的定位参考 */
+  overflow: visible !important;  /* 允许波浪超出header，避免被裁剪 */
+  min-height: 180px;             /* 给header足够高度容纳波浪（按需调整） */
+}
+
+/* 波浪容器：修复定位和语法错误 */
+.main-hero-waves-area {
+  width: 100%;
+  position: absolute;           /* 相对于#page-header定位 */
+  left: 0;
+  bottom: -20px !important;     /* 往下偏移50px（修正多余分号） */
+  z-index: 999;                 /* 确保波浪在内容上方 */
+}
+
+.waves-area .waves-svg {
+  width: 100%;
+  height: 5rem;                 /* 波浪高度，可调整为80px等数值 */
+}
+
+/* 波浪动画 */
+.parallax > use {
+  animation: move-forever 25s cubic-bezier(0.55, 0.5, 0.45, 0.5) infinite;
+}
+.parallax > use:nth-child(1) {
+  animation-delay: -2s;
+  animation-duration: 7s;
+  fill: hsla(12, 88%, 52%, 0.983);
+}
+.parallax > use:nth-child(2) {
+  animation-delay: -3s;
+  animation-duration: 10s;
+  fill: #fb533582;
+}
+.parallax > use:nth-child(3) {
+  animation-delay: -4s;
+  animation-duration: 13s;
+  fill: #fb5b2b36;
+}
+.parallax > use:nth-child(4) {
+  animation-delay: -5s;
+  animation-duration: 20s;
+  fill: #d0146f;
+}
+
+/* 夜间模式波浪颜色 */
+[data-theme="dark"] .parallax > use:nth-child(1) {
+  fill: #0cf546c8;
+}
+[data-theme="dark"] .parallax > use:nth-child(2) {
+  fill: #45eaf6fb;
+}
+[data-theme="dark"] .parallax > use:nth-child(3) {
+  fill: #d4f517f4;
+}
+[data-theme="dark"] .parallax > use:nth-child(4) {
+  fill: #13ef60;
+}
+
+@keyframes move-forever {
+  0% {
+    transform: translate3d(-90px, 0, 0);
+  }
+  100% {
+    transform: translate3d(85px, 0, 0);
+  }
+}
+
+/* 移动端适配 */
+@media (max-width: 768px) {
+  .waves-area .waves-svg {
+    height: 40px;
+    min-height: 40px;
+  }
+}
+/*-------------------------------- end -------------------------*/
+/*---------------- 网站整体样式基础设置 ----------------*/
+body {
+  background-color: transparent; /* 全透明背景，无颜色 */
+}
+
+[data-theme="dark"] body {
+  background-color: transparent; /* 深色模式也保持全透明 */
+}
+/*---------------- 主布局结构与位置调整 ----------------*/
+.layout {
+  display: flex !important;
+  flex-direction: row !important;
+  justify-content: flex-start !important;
+  padding: 0 10px !important;
+  max-width: 1920px !important;
+  margin: 0 auto !important;
+  position: relative;
+  z-index: 0;
+}
+
+/* 侧边栏布局 */
+.aside-content {
+  order: -1 !important;
+  width: 360px !important;
+  max-width: 360px !important;
+  min-width: 280px !important;
+  margin-left: 40px !important;
+  margin-right: 40px !important;
+  padding: 0 !important;
+}
+
+/* 主内容区 */
+.main-content {
+  flex: 1 !important;
+  margin-left: 0 !important;
+  margin-right: 0 !important;
+  padding: 0 !important;
+}
+
+/* 响应式优化 */
+@media (max-width: 768px) {
+  .layout {
+    flex-direction: column !important;
+    padding: 0 15px !important;
+  }
+  
+  .aside-content, .main-content {
+    width: 100% !important;
+    max-width: 100% !important;
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+}
+
+/*---------------- 主内容区粉紫色半透明背景 ----------------*/
+.layout::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  top: 0;
+  background: linear-gradient(to top, rgba(233, 130, 202, 0.1), transparent) !important;
+  z-index: -1;
+}
+
+[data-theme="dark"] .layout::after {
+  background: linear-gradient(to top, rgba(153, 76, 138, 0.1), transparent) !important;
+}
+
+/*---------------- 主内容卡片统一向下移动 ----------------*/
+/* 所有主内容卡片（包括首页文章、分类页、标签页等） */
+#recent-posts,
+.layout > #post,
+.layout > #page,
+.layout > #archive,
+.layout > #category,
+.layout > #tag {
+  margin-top: 40px !important; /* 统一向下移动60px */
+  position: relative;
+}
+
+/* 移动端调整 */
+@media (max-width: 768px) {
+  #recent-posts,
+  .layout > #post,
+  .layout > #page,
+  .layout > #archive,
+  .layout > #category,
+  .layout > #tag {
+    margin-top: 30px !important; /* 移动端减少下移距离 */
+  }
+}
+/* 音乐页面主内容容器单独下移 */
+.music-container {
+  margin-top: 40px !important; /* 向下移动80px，可根据需求调整数值 */
+}
+
+/* 响应式适配，移动端适当减小间距 */
+@media (max-width: 768px) {
+  .music-container {
+    margin-top: 40px !important; /* 移动端下移动40px，可按需调整 */
+  }
+}
+
+/*---------------- 侧边栏卡片样式 ----------------*/
+#aside-content > .card-widget {
+  background-image: url('/images/个人信息卡片背景.png');
+  background-repeat: no-repeat;
+  background-attachment: inherit;
+  background-size: cover;
+  background-blend-mode: overlay;
+  margin-bottom: 20px;
+  margin-top: 20px !important; /* 侧边栏卡片下移 */
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  overflow: hidden;
+}
+
+/* 个人信息卡片特殊设置 */
+#aside-content > .card-widget.card-info {
+  color: rgba(250, 11, 11, 0.96);
+  margin-top: 40px !important; /* 个人信息卡片下移更多 */
+}
+
+#aside-content > .card-widget.card-info > #card-info-btn {
+  background-color: #7019c2f8;
+  border-radius: 8px;
+}
+
+/* 其他卡片文字颜色 */
+#aside-content > .card-widget.card-announcement { color: rgba(250, 11, 11, 0.96); }
+#aside-content > .card-widget.card-recent-post { color: rgba(31, 250, 11, 0.96); }
+#aside-content > .card-widget.card-tags,
+#aside-content > .card-widget.card-archives,
+#aside-content > .card-widget.card-webinfo { color: rgba(250, 186, 11, 0.96); }
+
+/*---------------- 卡片背景与透明度优化 ----------------*/
+.card-widget {
+  background: linear-gradient(-45deg, #e2c1ffee, #ffb6e6ee, #c9a9ffee, #ffb3fdee) !important;
+}
+
+.recent-post-item,
+.layout > #post,
+.layout > #page,
+.layout > #archive,
+.layout > #category,
+.layout > #tag {
+  background: linear-gradient(-45deg, #e0bcffdd, #ffd3f0dd, #d5bdffdd, #ffdafedd) !important;
+  border-radius: 8px;
+  margin-bottom: 20px;
+  transition: all 0.3s ease;
+}
+
+/* 卡片透明度优化 */
+.recent-post-item,
+#aside-content > .card-widget {
+  background-color: rgba(255, 255, 255, 0.7) !important; /* 调整卡片透明度 */
+}
+
+[data-theme="dark"] .card-widget {
+  background: rgba(45, 10, 61, 0.7) !important;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3) !important;
+}
+
+[data-theme="dark"] .recent-post-item,
+[data-theme="dark"] .layout > #post,
+[data-theme="dark"] .layout > #page,
+[data-theme="dark"] .layout > #archive,
+[data-theme="dark"] .layout > #category,
+[data-theme="dark"] .layout > #tag {
+  background: rgba(45, 10, 61, 0.7) !important;
+}
+
+[data-theme="dark"] .recent-post-item,
+[data-theme="dark"] #aside-content > .card-widget {
+  background-color: rgba(0, 0, 0, 0.6) !important;
+}
+
+/*---------------- 导航栏样式 ----------------*/
+.nav-fixed>#nav {
+  background: linear-gradient(-45deg, #e0c1fa55, #fdbde755, #cfb5fc55, #fcbffa55) !important;
+  backdrop-filter: blur(10px);
+}
+
+[data-theme="dark"] .nav-fixed>#nav {
+  background: rgba(45, 10, 61, 0.7) !important;
+  backdrop-filter: blur(10px);
+}
+
+/*---------------- 交互效果 ----------------*/
+.recent-post-item:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+}
+
+/*---------------- 其他功能 ----------------*/
+.layout.hide-aside {
+  max-width: 1600px;
+}
+
+[data-theme="dark"] .social-icon i {
+  color: rgba(188, 188, 188) !important;
+}
